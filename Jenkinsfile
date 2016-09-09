@@ -25,7 +25,7 @@ node {
        //Unit Tests durchführen
       junit '**/target/surefire-reports/TEST-*.xml'
       //Ergebnisszusammenfassung anzeigen
-      sh "more /var/lib/jenkins/workspace/pipeline/target/surefire-reports/test*.txt"
+      sh "more target/surefire-reports/test*.txt"
       archive 'target/*.jar'
    }, 'Findbugs': {
        sh "'${mvnHome}/bin/mvn' findbugs:findbugs"
