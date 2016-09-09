@@ -31,6 +31,8 @@ node {
        sh "'${mvnHome}/bin/mvn' findbugs:findbugs"
    }
 }
+
+node {
    stage('Security PenTesting') {
        echo 'successfully finished with 0 Bugs and 2 warnings'
    }   
