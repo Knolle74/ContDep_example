@@ -38,7 +38,10 @@ node {
    }   
    stage('Deploy to DEV') {
        echo 'Deploy wird durchgeführt. Willkommen in DEV ...'
-   }   
+   }
+   stage('BSM Script Testing') {
+       echo 'successfully finished with no problem'
+   }
    stage('Approval Step for QA Deploy') {
        // manuelle Bestätigung notwendig für zB Deploy nach PROD
        timeout(time:2, unit:'MINUTES') {
@@ -51,9 +54,6 @@ node {
    stage('QA LAPT Testing') {
        echo 'Testing successfully finished. 1.000.000 Requests with 1 broken Response and meantime-response per request of 0.13 ms'
    }
-   stage('BSM Script Testing') {
-       echo 'successfully finished with no problem'
-   }
    stage('Approval Step for Prod Deploy') {
        // manuelle Bestätigung notwendig für zB Deploy nach PROD
        timeout(time:2, unit:'MINUTES') {
@@ -61,11 +61,12 @@ node {
        }
    }
    stage('Create Change and wait for confirmation') {
-       // manuelle Bestätigung notwendig für zB Deploy nach PROD
-       timeout(time:10, unit:'SECONDS')
+       echo 'Change C09876543 wurde angelegt'
    }
    stage('Deploy to productional environment') {
-       echo 'Approval for Change C09876543 received. Deploying to prod ...'
+       timeout(time:10, unit:'SECONDS') {
+         echo 'Approval for Change C09876543 received. Deploying to prod ...'
+       }
    }
    stage('Smoke Testing Production') {
        echo 'Tests passed. Welcome in real life'
